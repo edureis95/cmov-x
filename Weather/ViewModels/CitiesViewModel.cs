@@ -7,22 +7,24 @@ using Xamarin.Forms;
 
 namespace Weather
 {
-    public class ItemsViewModel : BaseViewModel
+    public class CitiesViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<City> Cities { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public CitiesViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Title = "Cities";
+            Cities = new ObservableCollection<City>();
+
+            //CARREGA DOS ITEMS PARA A LISTA
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewItemPage, City>(this, "AddItem", async (obj, city) =>
             {
-                var _item = item as Item;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
+                var _city = city as City;
+                Cities.Add(_city);
+                await DataStore.AddCityAsync(_city);
             });
         }
 
@@ -35,11 +37,11 @@ namespace Weather
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                Cities.Clear();
+                var cities = await DataStore.GetCityAsync(true);
+                foreach (var city in cities)
                 {
-                    Items.Add(item);
+                    Cities.Add(city);
                 }
             }
             catch (Exception ex)

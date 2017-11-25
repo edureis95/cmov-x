@@ -9,68 +9,68 @@ using Plugin.Connectivity;
 
 namespace Weather
 {
-    public class CloudDataStore : IDataStore<Item>
+    public class CloudDataStore
     {
         HttpClient client;
-        IEnumerable<Item> items;
+        IEnumerable<City> cities;
 
         public CloudDataStore()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri($"{App.BackendUrl}/");
-
-            items = new List<Item>();
+            cities = new List<City>();
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<City>> GetCityAsync(bool forceRefresh = false)
         {
+            Console.WriteLine("Entrou aqui");
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
-                var json = await client.GetStringAsync($"api/item");
-                items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Item>>(json));
+                var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=Porto");
+                Console.WriteLine(json);
+                cities = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<City>>(json));
             }
-
-            return items;
+            return cities;
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<City> GetCityAsync(string id)
         {
             if (id != null && CrossConnectivity.Current.IsConnected)
             {
-                var json = await client.GetStringAsync($"api/item/{id}");
-                return await Task.Run(() => JsonConvert.DeserializeObject<Item>(json));
+                var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=Porto");
+                Console.WriteLine(json);
+                return await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
             }
-
             return null;
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddCityAsync(City city)
         {
-            if (item == null || !CrossConnectivity.Current.IsConnected)
+            if (city == null || !CrossConnectivity.Current.IsConnected)
                 return false;
 
-            var serializedItem = JsonConvert.SerializeObject(item);
+            var serializedCity = JsonConvert.SerializeObject(city);
 
-            var response = await client.PostAsync($"api/item", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+            var response = await client.PostAsync($"api/item", new StringContent(serializedCity, Encoding.UTF8, "application/json"));
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateCityAsync(City city)
         {
-            if (item == null || item.Id == null || !CrossConnectivity.Current.IsConnected)
+            if (city == null || city.Location == null || !CrossConnectivity.Current.IsConnected)
                 return false;
 
-            var serializedItem = JsonConvert.SerializeObject(item);
-            var buffer = Encoding.UTF8.GetBytes(serializedItem);
+            var serializedCity = JsonConvert.SerializeObject(city);
+            var buffer = Encoding.UTF8.GetBytes(serializedCity);
             var byteContent = new ByteArrayContent(buffer);
 
-            var response = await client.PutAsync(new Uri($"api/item/{item.Id}"), byteContent);
+            var response = await client.PutAsync(new Uri($"api/item/{city.Location}"), byteContent);
 
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteCityAsync(string id)
         {
             if (string.IsNullOrEmpty(id) && !CrossConnectivity.Current.IsConnected)
                 return false;

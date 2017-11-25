@@ -8,27 +8,27 @@ namespace Weather
     {
         public MainPage()
         {
-            Page itemsPage, aboutPage = null;
+            Page citiesPage, aboutPage = null;
 
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:
-                    itemsPage = new NavigationPage(new ItemsPage())
+                    citiesPage = new NavigationPage(new CitiesPage())
                     {
-                        Title = "Browse"
+                        Title = "Cities"
                     };
 
                     aboutPage = new NavigationPage(new AboutPage())
                     {
                         Title = "About"
                     };
-                    itemsPage.Icon = "tab_feed.png";
+                    citiesPage.Icon = "tab_feed.png";
                     aboutPage.Icon = "tab_about.png";
                     break;
                 default:
-                    itemsPage = new ItemsPage()
+                    citiesPage = new CitiesPage()
                     {
-                        Title = "Browse"
+                        Title = "Cities"
                     };
 
                     aboutPage = new AboutPage()
@@ -38,7 +38,7 @@ namespace Weather
                     break;
             }
 
-            Children.Add(itemsPage);
+            Children.Add(citiesPage);
             Children.Add(aboutPage);
 
             Title = Children[0].Title;

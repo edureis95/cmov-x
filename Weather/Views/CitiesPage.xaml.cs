@@ -6,27 +6,27 @@ using Xamarin.Forms;
 
 namespace Weather
 {
-    public partial class ItemsPage : ContentPage
+    public partial class CitiesPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        CitiesViewModel viewModel;
 
-        public ItemsPage()
+        public CitiesPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new CitiesViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
-            if (item == null)
+            var city = args.SelectedItem as City;
+            if (city == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new CityDetailPage(new CityDetailViewModel(city)));
 
             // Manually deselect item
-            ItemsListView.SelectedItem = null;
+            CitiesListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace Weather
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
+            if (viewModel.Cities.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }

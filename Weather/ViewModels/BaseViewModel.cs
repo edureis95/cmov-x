@@ -9,7 +9,7 @@ namespace Weather
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public CloudDataStore DataStore => DependencyService.Get<CloudDataStore>();
 
         bool isBusy = false;
         public bool IsBusy
