@@ -15,7 +15,7 @@ namespace Weather
 
             var city = new City
             {
-                Location = "Cidade"
+                //location = "Cidade"
             };
 
             viewModel = new CityDetailViewModel(city);

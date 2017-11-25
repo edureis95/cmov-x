@@ -7,7 +7,7 @@ namespace Weather
         public City Item { get; set; }
         public CityDetailViewModel(City city = null)
         {
-            Title = city?.Location;
+            //Title = city.Location.;
             Item = city;
         }
     }

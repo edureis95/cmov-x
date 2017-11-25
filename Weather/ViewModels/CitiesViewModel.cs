@@ -39,10 +39,10 @@ namespace Weather
             {
                 Cities.Clear();
                 var cities = await DataStore.GetCityAsync(true);
-                foreach (var city in cities)
+                /*foreach (var city in cities)
                 {
                     Cities.Add(city);
-                }
+                }*/
             }
             catch (Exception ex)
             {

@@ -12,7 +12,7 @@ namespace Weather
     public class CloudDataStore
     {
         HttpClient client;
-        IEnumerable<City> cities;
+        List<City> cities;
 
         public CloudDataStore()
         {
@@ -21,16 +21,17 @@ namespace Weather
             cities = new List<City>();
         }
 
-        public async Task<IEnumerable<City>> GetCityAsync(bool forceRefresh = false)
+        public async Task<City> GetCityAsync(bool forceRefresh = false)
         {
             Console.WriteLine("Entrou aqui");
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
                 var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=Porto");
                 Console.WriteLine(json);
-                cities = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<City>>(json));
+                var city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
+                cities.Add(city);
             }
-            return cities;
+            return null;
         }
 
         public async Task<City> GetCityAsync(string id)
@@ -56,7 +57,7 @@ namespace Weather
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateCityAsync(City city)
+        /*public async Task<bool> UpdateCityAsync(City city)
         {
             if (city == null || city.Location == null || !CrossConnectivity.Current.IsConnected)
                 return false;
@@ -65,10 +66,9 @@ namespace Weather
             var buffer = Encoding.UTF8.GetBytes(serializedCity);
             var byteContent = new ByteArrayContent(buffer);
 
-            var response = await client.PutAsync(new Uri($"api/item/{city.Location}"), byteContent);
-
+            var response = await client.PutAsync(new Uri($"api/item/{city.location}"), byteContent);
             return response.IsSuccessStatusCode;
-        }
+        }*/
 
         public async Task<bool> DeleteCityAsync(string id)
         {
