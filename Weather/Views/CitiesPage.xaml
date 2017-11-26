@@ -13,6 +13,7 @@
                                 <Label Text="{Binding Location.Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
                                 <Label Text="{Binding Location.Country}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
                                 <Label Text="{Binding Current.TempC}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+                                <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" />
                             </StackLayout>
 						</ViewCell>
 					</DataTemplate>
