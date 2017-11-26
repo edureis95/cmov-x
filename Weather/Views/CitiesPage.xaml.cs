@@ -23,7 +23,7 @@ namespace Weather
             if (city == null)
                 return;
 
-            await Navigation.PushAsync(new CityDetailPage(new CityDetailViewModel(city)));
+            await Navigation.PushAsync(new CityDetailPage((city)));
 
             // Manually deselect item
             CitiesListView.SelectedItem = null;
@@ -37,8 +37,7 @@ namespace Weather
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.Cities.Count == 0)
+            
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding Location.Name}">
 	<StackLayout Spacing="20" Padding="15">
-		<Label Text="{Binding Item.Text}" FontSize="Medium" />
-		<Label Text="{Binding Item.Description}" FontSize="Small" />
-	</StackLayout>
+        <Label Text="{Binding Location.Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding Location.Country}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding Current.TempC}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+    </StackLayout>
 </ContentPage>

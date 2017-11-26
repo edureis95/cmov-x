@@ -20,11 +20,12 @@ namespace Weather
             //CARREGA DOS ITEMS PARA A LISTA
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, City>(this, "AddItem", async (obj, city) =>
+            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
-                var _city = city as City;
-                Cities.Add(_city);
+                var _city = item as Item;
+                //Cities.Add(_city);
                 await DataStore.AddCityAsync(_city);
+                
             });
         }
 
@@ -39,9 +40,11 @@ namespace Weather
             {
                 Cities.Clear();
                 var cities = await DataStore.GetCityAsync(true);
-                Console.WriteLine(cities);
 
-                Cities.Add(cities);
+                foreach (var city in cities)
+                {
+                    Cities.Add(city);
+                }
                 
                 
             }

@@ -6,23 +6,18 @@ namespace Weather
 {
     public partial class CityDetailPage : ContentPage
     {
-        CityDetailViewModel viewModel;
+        City viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
         public CityDetailPage()
         {
             InitializeComponent();
 
-            var city = new City
-            {
-                //location = "Cidade"
-            };
-
-            viewModel = new CityDetailViewModel(city);
+            viewModel = new City();
             BindingContext = viewModel;
         }
 
-        public CityDetailPage(CityDetailViewModel viewModel)
+        public CityDetailPage(City viewModel)
         {
             InitializeComponent();
 
