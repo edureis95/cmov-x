@@ -12,13 +12,13 @@ namespace Weather
     public class CloudDataStore
     {
         HttpClient client;
-        List<City> cities;
+        City city;
 
         public CloudDataStore()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri($"{App.BackendUrl}/");
-            cities = new List<City>();
+            city = new City();
         }
 
         public async Task<City> GetCityAsync(bool forceRefresh = false)
@@ -28,10 +28,10 @@ namespace Weather
             {
                 var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=Porto");
                 Console.WriteLine(json);
-                var city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
-                cities.Add(city);
+                city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
+          
             }
-            return null;
+            return city;
         }
 
         public async Task<City> GetCityAsync(string id)
@@ -39,7 +39,7 @@ namespace Weather
             if (id != null && CrossConnectivity.Current.IsConnected)
             {
                 var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=Porto");
-                Console.WriteLine(json);
+                
                 return await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
             }
             return null;

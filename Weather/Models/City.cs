@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 namespace Weather {
- public class City {
-        
-  public partial class GettingStarted {
+  public partial class City
+    {
    [JsonProperty("current")]
    public Current Current {
     get;
@@ -210,5 +209,4 @@ namespace Weather {
    }
   }
 
- }
 }
