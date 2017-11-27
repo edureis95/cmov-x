@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.InfoPastDays" Title="{Binding pastday.PastLocation.Name}" >
+    <StackLayout Spacing="20" Padding="15" >
+        <Label Text="{Binding pastday.PastLocation.Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Date}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MintempC,StringFormat='Min temperature: {0}C'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxtempC,StringFormat='Max temperature: {0}C'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxwindKph,StringFormat='Max wind: {0} km/h'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Astro.Sunrise,StringFormat='Sunrise: {0}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Astro.Sunset,StringFormat='Sunset: {0}'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+        <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.Avghumidity,StringFormat='Avg humidity: {0}%'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
+    </StackLayout>
+</ContentPage>
