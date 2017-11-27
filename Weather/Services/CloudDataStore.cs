@@ -32,24 +32,25 @@ namespace Weather
                 {  
                     var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=" + item.Description);
                     var city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
+                    city.Id = item.Id;
                     cities.Add(city);
                 }
             }
             return cities;
         }
 
-        public async Task<List<City>> GetCityAsync(string id)
+        public async Task<PastDay> GetCityAsync(string id,string date)
         {
             if ( CrossConnectivity.Current.IsConnected)
             {
+           
+                var json = await client.GetStringAsync($"v1/history.json?key=27dee16894ba4fe797995725172411&q="+id+"&dt="+date);
 
-                var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=" + id);
-
-                var city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
-                cities.Add(city);
+                var city = await Task.Run(() => JsonConvert.DeserializeObject<PastDay>(json));
+                return city;
 
             }
-            return cities;
+            return null;
         }
 
    
@@ -81,6 +82,11 @@ namespace Weather
             var response = await client.DeleteAsync($"api/item/{id}");
 
             return response.IsSuccessStatusCode;
+        }
+
+        public void removeItemById(string Id)
+        {
+            items.Remove(items.Find(Item => Item.Id == Id));
         }
     }
 }

@@ -25,9 +25,34 @@ namespace Weather
                 var _city = item as Item;
                 //Cities.Add(_city);
                 await DataStore.AddCityAsync(_city);
-                
+
             });
         }
+
+        public Command<City> RemoveCommand
+        {
+            get
+            {
+                return new Command<City>((City) =>
+                {
+                    Cities.Remove(City);
+                    DataStore.removeItemById(City.Id);
+                });
+            }
+        }
+
+        /*async Task RemoveItem(City item)
+        {
+            try 
+            {
+                var _city = item as Item;
+                await DataStore.DeleteCityAsync(city.ToString());
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine(ex);
+            }
+        }*/
 
         async Task ExecuteLoadItemsCommand()
         {
