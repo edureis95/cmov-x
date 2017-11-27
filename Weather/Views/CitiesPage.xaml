@@ -6,7 +6,7 @@
 	<ContentPage.Content>
 		<StackLayout>
             <ListView x:Name="CitiesListView" ItemsSource="{Binding Cities}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
-				<ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="10">
@@ -25,9 +25,9 @@
                                 <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" Grid.Row="0" Grid.Column="3" />
                                 <Button Text="X" Clicked="RemoveItem_Clicked" Grid.Row="0" Grid.Column="4" />
                             </Grid>
-                            </ViewCell>
-                    </DataTemplate>
-				</ListView.ItemTemplate>
+                        </ViewCell>
+                        </DataTemplate>
+                </ListView.ItemTemplate>
 			</ListView>
 		</StackLayout>
 	</ContentPage.Content>

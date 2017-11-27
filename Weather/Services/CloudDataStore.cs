@@ -114,6 +114,7 @@ namespace Weather
         {
             items.Remove(items.Find(Item => Item.Id == Id));
             saveItemsToFile();
+
         }
     }
 }
