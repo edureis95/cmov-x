@@ -6,7 +6,6 @@
 	<ContentPage.Content>
 		<StackLayout>
             <ListView x:Name="CitiesListView" ItemsSource="{Binding Cities}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
-
                 <ListView.ItemTemplate>
 
                     <DataTemplate>
@@ -28,6 +27,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

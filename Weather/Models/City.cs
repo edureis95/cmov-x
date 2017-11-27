@@ -21,6 +21,7 @@ namespace Weather {
         get;
         set;
     }
+
         public string date
         {
             get;
@@ -32,7 +33,6 @@ namespace Weather {
             set;
         }
     }
-
 
   public partial class Location {
    [JsonProperty("country")]
