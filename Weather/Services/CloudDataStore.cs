@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using System.IO;
 
 namespace Weather
 {
@@ -20,7 +21,20 @@ namespace Weather
             client = new HttpClient();
             client.BaseAddress = new Uri($"{App.BackendUrl}/");
             cities = new List<City>();
-            items = new List<Item>();
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string filename = Path.Combine(path, "Items");
+
+            if (File.Exists(filename))
+            {
+                using (var streamReader = new StreamReader(filename))
+                {
+                    string content = streamReader.ReadToEnd();
+                    items = JsonConvert.DeserializeObject<List<Item>>(content);
+                    if (items == null)
+                        items = new List<Item>();
+                }
+            }
+            else items = new List<Item>();
         }
 
         public async Task<List<City>> GetCityAsync(bool forceRefresh = true)
@@ -57,8 +71,20 @@ namespace Weather
         public async Task<bool> AddCityAsync(Item item)
         {
             items.Add(item);
-
+            saveItemsToFile();
             return await Task.FromResult(true);
+        }
+
+        public void saveItemsToFile()
+        {
+            var itemsJSON = JsonConvert.SerializeObject(items);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string filename = Path.Combine(path, "Items");
+
+            using (var streamWriter = new StreamWriter(filename))
+            {
+                streamWriter.WriteLine(itemsJSON);
+            }
         }
 
         /*public async Task<bool> UpdateCityAsync(City city)
@@ -87,6 +113,7 @@ namespace Weather
         public void removeItemById(string Id)
         {
             items.Remove(items.Find(Item => Item.Id == Id));
+            saveItemsToFile();
         }
     }
 }

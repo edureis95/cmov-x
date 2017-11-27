@@ -8,15 +8,24 @@
             <ListView x:Name="CitiesListView" ItemsSource="{Binding Cities}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<ViewCell>
-							<StackLayout Padding="10">
-                                <Label Text="{Binding Location.Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                                <Label Text="{Binding Location.Country}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-                                <Label Text="{Binding Current.TempC}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-                                <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" />
-                                <Button Text="Remove" Clicked="RemoveItem_Clicked"/>
-                            </StackLayout>
-						</ViewCell>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="200" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Location.Name, StringFormat='{0},'}" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="15" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Location.Country, StringFormat='{0},'}" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="15" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="{Binding Current.TempC, StringFormat='{0}º'}" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="15" Grid.Row="0" Grid.Column="2" />
+                                <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" Grid.Row="0" Grid.Column="3" />
+                                <Button Text="X" Clicked="RemoveItem_Clicked" Grid.Row="0" Grid.Column="4" />
+                            </Grid>
+                        </ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
