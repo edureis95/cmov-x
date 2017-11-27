@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding Location.Name}">
-	<StackLayout Spacing="20" Padding="15">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Past days" Clicked="CheckPast_Days" />
+    </ContentPage.ToolbarItems>
+    <StackLayout Spacing="20" Padding="15">
         <Label Text="{Binding Location.Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
         <Label Text="{Binding Location.Country}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-        <Label Text="{Binding Current.TempC}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+        <Label Text="{Binding Current.TempC, StringFormat='Temperature: {0}ºC'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+        <Label Text="{Binding Current.WindKph, StringFormat='Wind: {0} km/h'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+        <Label Text="{Binding Current.PrecipMm, StringFormat='Precipitation: {0} Mm'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+        <Label Text="{Binding Current.Humidity, StringFormat='Humidity: {0}%'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
+        <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" />
     </StackLayout>
 </ContentPage>
