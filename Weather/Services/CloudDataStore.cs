@@ -32,6 +32,7 @@ namespace Weather
                 {  
                     var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=" + item.Description);
                     var city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
+                    city.Id = item.Id;
                     cities.Add(city);
                 }
             }
@@ -81,6 +82,11 @@ namespace Weather
             var response = await client.DeleteAsync($"api/item/{id}");
 
             return response.IsSuccessStatusCode;
+        }
+
+        public void removeItemById(string Id)
+        {
+            items.Remove(items.Find(Item => Item.Id == Id));
         }
     }
 }

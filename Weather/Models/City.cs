@@ -15,6 +15,12 @@ namespace Weather {
     get;
     set;
    }
+
+   public string Id
+    {
+        get;
+        set;
+    }
   }
 
   public partial class Location {

@@ -40,5 +40,16 @@ namespace Weather
             
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
+        private void RemoveItem_Clicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+
+            var city = button?.BindingContext as City;
+
+            var vm = BindingContext as CitiesViewModel;
+
+            vm?.RemoveCommand.Execute(city);
+        }
     }
 }
