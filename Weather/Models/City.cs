@@ -21,7 +21,18 @@ namespace Weather {
         get;
         set;
     }
-  }
+        public string date
+        {
+            get;
+            set;
+        }
+        public string mindate
+        {
+            get;
+            set;
+        }
+    }
+
 
   public partial class Location {
    [JsonProperty("country")]
