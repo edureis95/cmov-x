@@ -34,6 +34,7 @@ namespace Weather {
         }
     }
 
+
   public partial class Location {
    [JsonProperty("country")]
    public string Country {
