@@ -43,9 +43,17 @@ namespace Weather
             {
                 cities.Clear();
                 foreach (var item in items)
-                {  
-                    var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=" + item.Description);
-                    var city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
+                {
+                    City city;
+                    try
+                    {
+                        var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=" + item.Description);
+                        city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
+                    }
+                    catch(Exception exception)
+                    {
+                        continue;
+                    }
                     city.Id = item.Id;
                     cities.Add(city);
                 }
@@ -112,7 +120,8 @@ namespace Weather
 
         public void removeItemById(string Id)
         {
-            items.Remove(items.Find(Item => Item.Id == Id));
+        
+            items.Remove(items.Find(Item => Item.Description.Contains(Id)));
             saveItemsToFile();
 
         }
