@@ -24,13 +24,12 @@
                                 <Label Text="{Binding Location.Country}" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="CharacterWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
                                 <Label Text="{Binding Current.TempC, StringFormat='{0}º'}" HorizontalOptions="Center"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="0" Grid.Column="2" />
                                 <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="3" />
-                                
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-
-		</StackLayout>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

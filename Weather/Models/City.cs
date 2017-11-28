@@ -21,7 +21,6 @@ namespace Weather {
         get;
         set;
     }
-
         public string date
         {
             get;
