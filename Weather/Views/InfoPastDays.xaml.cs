@@ -14,6 +14,7 @@ namespace Weather
 	{
 
         PastDayViewModel viewModel;
+        Boolean isBusy;
 
     
         public InfoPastDays ()
@@ -24,14 +25,18 @@ namespace Weather
         public InfoPastDays(City city)
         {
             InitializeComponent();
- 
+            isBusy = false;
             BindingContext = viewModel = new PastDayViewModel(city);
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
+           
             viewModel.LoadItemsCommand.Execute(null);
+      
+
+            await MainProgressBar.ProgressTo(0.8, 1000, Easing.Linear);
 
         }
 

@@ -51,5 +51,16 @@ namespace Weather
 
             vm?.RemoveCommand.Execute(city);
         }
+
+      
+        public void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            var city = mi?.BindingContext as City;
+            var vm = BindingContext as CitiesViewModel;
+
+            vm?.RemoveCommand.Execute(city);
+            
+        }
     }
 }
