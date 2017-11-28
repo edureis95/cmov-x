@@ -32,12 +32,14 @@ namespace Weather
         {
             base.OnAppearing();
 
-           
+
             viewModel.LoadItemsCommand.Execute(null);
-      
+       
+        }
 
-            await MainProgressBar.ProgressTo(0.8, 1000, Easing.Linear);
 
+        async public void click_view_details(){
+            await Navigation.PushAsync(new ChartPage(viewModel));
         }
 
 
