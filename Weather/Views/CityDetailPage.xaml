@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding Location.Name}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding Location.Name, StringFormat='Current {0}'}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Past days" Clicked="CheckPast_Days" />
     </ContentPage.ToolbarItems>
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="{Binding Location.Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-        <Label Text="{Binding Location.Country}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
-        <Label Text="{Binding Current.TempC, StringFormat='Temperature: {0}ºC'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-        <Label Text="{Binding Current.WindKph, StringFormat='Wind: {0} km/h'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-        <Label Text="{Binding Current.PrecipMm, StringFormat='Precipitation: {0} Mm'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-        <Label Text="{Binding Current.Humidity, StringFormat='Humidity: {0}%'}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-        <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" />
-    </StackLayout>
+    <ScrollView>
+        <Grid ColumnSpacing="0" Padding="40,30,40,30">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding Location.Name}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
+            <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" HorizontalOptions="Fill" VerticalOptions="Fill"  Grid.Row="0" Grid.Column="1"  />
+
+
+            <Label Text="Temperature:" HorizontalOptions="Center"  VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="0" />
+            <Label Text="{Binding Current.TempC, StringFormat='{0}ºC'}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+
+            <Label Text="Wind:" HorizontalOptions="Center" VerticalOptions="Center"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="0" />
+            <Label Text="{Binding Current.WindKph, StringFormat='{0} km/h'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
+
+            <Label Text="Precipitation:" HorizontalOptions="Center" VerticalOptions="Center"   LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="0" />
+            <Label Text="{Binding Current.PrecipMm, StringFormat='{0} Mm'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="3" Grid.Column="1"/>
+
+            <Label Text="Humidity:" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="0" />
+            <Label Text="{Binding Current.Humidity, StringFormat='{0}%'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="4" Grid.Column="1" />
+
+            
+          
+            </Grid>
+ 
+  
+    </ScrollView>
 </ContentPage>

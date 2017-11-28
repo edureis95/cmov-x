@@ -36,23 +36,11 @@ namespace Weather
                 return new Command<City>((City) =>
                 {
                     Cities.Remove(City);
-                    DataStore.removeItemById(City.Id);
+                    DataStore.removeItemById(City.Location.Name);
                 });
             }
         }
 
-        /*async Task RemoveItem(City item)
-        {
-            try 
-            {
-                var _city = item as Item;
-                await DataStore.DeleteCityAsync(city.ToString());
-            }
-            catch (Exception ex) 
-            {
-                Debug.WriteLine(ex);
-            }
-        }*/
 
         async Task ExecuteLoadItemsCommand()
         {
@@ -65,9 +53,11 @@ namespace Weather
             {
                 Cities.Clear();
                 var cities = await DataStore.GetCityAsync(true);
+           
 
                 foreach (var city in cities)
                 {
+                 
                     Cities.Add(city);
                 }
                 

@@ -4,8 +4,8 @@
         <ToolbarItem Text="Go" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Insert day" FontSize="Medium" />
+        <StackLayout Spacing="20" Padding="40">
+            <Label Text="Insert day" FontSize="Large" />
             <DatePicker x:Name="StartDatePicker"  Date="{Binding date}" MinimumDate="{Binding mindate}" MaximumDate="{Binding date}"  Format="yyyy-MM-dd"  />
         </StackLayout>
     </ContentPage.Content>

@@ -21,7 +21,7 @@ namespace Weather
         {
             InitializeComponent();
             this.city = city;
-            this.city.date = DateTime.Now.ToString("yyyy-MM-dd");
+            this.city.date = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             this.city.mindate = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
             BindingContext = this.city;
         }
