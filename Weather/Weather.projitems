@@ -46,6 +46,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Search.xaml.cs">
       <SubType>Code</SubType>
+	  </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ChartPage.xaml.cs">
+      <DependentUpon>ChartPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +57,10 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CitiesPage.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ChartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\PastDays.xaml">

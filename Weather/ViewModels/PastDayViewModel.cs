@@ -35,6 +35,7 @@ namespace Weather
             try
             {
                 DateTime enteredDate = DateTime.ParseExact(city.date, "MM/dd/yyyy HH:mm:ss", null);
+                DateTime enteredDate = DateTime.ParseExact(city.date, "MM/dd/yyyy HH:mm:ss", null);   
                 pastday = await DataStore.GetCityAsync(city.Location.Name, enteredDate.ToString("yyyy-MM-dd"));
                 OnPropertyChanged("pastday");
             }

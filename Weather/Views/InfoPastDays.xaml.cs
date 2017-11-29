@@ -12,8 +12,9 @@ namespace Weather
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class InfoPastDays : ContentPage
 	{
-
+        
         PastDayViewModel viewModel;    
+
         public InfoPastDays ()
 		{
 			InitializeComponent ();
@@ -24,12 +25,16 @@ namespace Weather
             InitializeComponent();
             BindingContext = viewModel = new PastDayViewModel(city);
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-       
             viewModel.LoadItemsCommand.Execute(null);
+            details.IsEnabled = true;
+        }
 
+
+        async public void click_view_details(){
+            await Navigation.PushAsync(new ChartPage(viewModel));
         }
 
 
