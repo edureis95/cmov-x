@@ -31,10 +31,10 @@ namespace Weather
                 return;
 
             IsBusy = true;
+            IsNotBusy = false;
 
             try
             {
-                DateTime enteredDate = DateTime.ParseExact(city.date, "MM/dd/yyyy HH:mm:ss", null);
                 DateTime enteredDate = DateTime.ParseExact(city.date, "MM/dd/yyyy HH:mm:ss", null);   
                 pastday = await DataStore.GetCityAsync(city.Location.Name, enteredDate.ToString("yyyy-MM-dd"));
                 OnPropertyChanged("pastday");
@@ -46,6 +46,7 @@ namespace Weather
             finally
             {
                 IsBusy = false;
+                IsNotBusy = true;
             }
         }
     }

@@ -46,7 +46,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Search.xaml.cs">
       <SubType>Code</SubType>
-	  </Compile>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ChartPage.xaml.cs">
       <DependentUpon>ChartPage.xaml</DependentUpon>
     </Compile>

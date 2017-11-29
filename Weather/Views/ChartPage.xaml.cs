@@ -112,7 +112,15 @@ namespace Weather
                         using (SKManagedStream skStream = new SKManagedStream(memStream))
                         {
                             hours_weatherstatusthumb.Add(key, SKBitmap.Decode(skStream));
-                            Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());
+                            /*if (hours_weatherstatusthumb.ContainsKey(0) &&
+                               hours_weatherstatusthumb.ContainsKey(3) &&
+                               hours_weatherstatusthumb.ContainsKey(6) &&
+                               hours_weatherstatusthumb.ContainsKey(9) &&
+                               hours_weatherstatusthumb.ContainsKey(12) &&
+                               hours_weatherstatusthumb.ContainsKey(15) &&
+                               hours_weatherstatusthumb.ContainsKey(18) &&
+                               hours_weatherstatusthumb.ContainsKey(21))*/
+                                Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());
                         }
                     }
                 }
