@@ -20,7 +20,7 @@ namespace Weather
             //CARREGA DOS ITEMS PARA A LISTA
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<SearchView, Item>(this, "AddItem", async (obj, item) =>
             {
                 var _city = item as Item;
                 //Cities.Add(_city);

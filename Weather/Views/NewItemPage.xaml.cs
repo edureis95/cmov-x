@@ -23,8 +23,7 @@ namespace Weather
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
-            await Navigation.PopToRootAsync();
+            await Navigation.PushAsync(new SearchView(Item));
         }
     }
 }

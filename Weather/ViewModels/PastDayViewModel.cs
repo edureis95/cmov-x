@@ -15,15 +15,15 @@ namespace Weather
         public City city;
         public PastDay pastday { get; set; }
 
-       
-      
+
+
         public PastDayViewModel(City city)
         {
             Title = "Past Day";
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(city));
-            
+
         }
- 
+
 
         async Task ExecuteLoadItemsCommand(City city)
         {
@@ -34,7 +34,7 @@ namespace Weather
 
             try
             {
-                DateTime enteredDate = DateTime.ParseExact(city.date, "MM/dd/yyyy HH:mm:ss", null);   
+                DateTime enteredDate = DateTime.ParseExact(city.date, "MM/dd/yyyy HH:mm:ss", null);
                 pastday = await DataStore.GetCityAsync(city.Location.Name, enteredDate.ToString("yyyy-MM-dd"));
                 OnPropertyChanged("pastday");
             }

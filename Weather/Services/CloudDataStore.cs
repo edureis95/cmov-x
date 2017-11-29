@@ -61,6 +61,17 @@ namespace Weather
             return cities;
         }
 
+        public async Task<List<SearchModel>> Search(string name)
+        {
+            List<SearchModel> cities = new List<SearchModel>();
+            if ( CrossConnectivity.Current.IsConnected)
+            {
+                var json = await client.GetStringAsync($"v1/search.json?key=27dee16894ba4fe797995725172411&q=" + name);
+                cities = await Task.Run(() => JsonConvert.DeserializeObject<List<SearchModel>>(json));  
+            }
+            return cities;
+        }
+
         public async Task<PastDay> GetCityAsync(string id,string date)
         {
             if ( CrossConnectivity.Current.IsConnected)
