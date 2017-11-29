@@ -9,21 +9,21 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-
+using System.Threading;
+using System.Collections.Concurrent;
 
 namespace Weather
 {
     public partial class ChartPage : ContentPage
     {
         Dictionary<int, string> hours_temperature = new Dictionary<int, string>();
-        Dictionary<int, SKBitmap> hours_weatherstatusthumb = new Dictionary<int, SKBitmap>();
+        ConcurrentDictionary<int, SKBitmap> hours_weatherstatusthumb = new ConcurrentDictionary<int, SKBitmap>();
 
         PastDayViewModel viewModel;
 
         // SKCanvas canvas;
         float screen_width;
         float screen_height;
-
 
         public ChartPage(PastDayViewModel viewModel)
         {
@@ -41,7 +41,7 @@ namespace Weather
 
         public void load_hour_temperature()
         {
-            Console.WriteLine("------------------->" + viewModel);
+
             hours_temperature[0] = viewModel.pastday.Forecast.Forecastday[0].Hour[0].TempC.ToString();
             hours_temperature[3] = viewModel.pastday.Forecast.Forecastday[0].Hour[3].TempC.ToString();
             hours_temperature[6] = viewModel.pastday.Forecast.Forecastday[0].Hour[6].TempC.ToString();
@@ -97,6 +97,7 @@ namespace Weather
 
         public void load_bitmap(string url, int key)
         {
+
             Uri uri = new Uri(url);
             WebRequest request = WebRequest.Create(uri);
             request.BeginGetResponse((IAsyncResult arg) =>
@@ -111,7 +112,9 @@ namespace Weather
 
                         using (SKManagedStream skStream = new SKManagedStream(memStream))
                         {
-                            hours_weatherstatusthumb.Add(key, SKBitmap.Decode(skStream));
+                            hours_weatherstatusthumb.AddOrUpdate(key, SKBitmap.Decode(skStream), (k, v) => v);
+
+
                             Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());
                         }
                     }
@@ -133,7 +136,6 @@ namespace Weather
             screen_height = image_info.Height;
 
             canvas.Clear(SKColors.White);
-            Console.WriteLine("Width: " + image_info.Width + " Height: " + image_info.Height);
 
             //eixo das horas 
 
@@ -199,7 +201,8 @@ namespace Weather
             for (int i = 0; i < 8; i++)
             {
                 int thumbkey = 3 * i;
-                if (hours_weatherstatusthumb.ContainsKey(thumbkey)){
+                if (hours_weatherstatusthumb.ContainsKey(thumbkey))
+                {
                     SKBitmap thumb = hours_weatherstatusthumb[thumbkey];
                     if (thumb != null && !thumb.IsNull)
                         canvas.DrawBitmap(thumb, (float)points[i].X, (float)points[i].Y - 10, null);
@@ -210,7 +213,7 @@ namespace Weather
 
         private float convert_temp_to_pos(string tempC)
         {
-            Console.WriteLine("Temperature: " + tempC); ;
+
             return (float.Parse(tempC) * (70 * screen_height / 150)) / 45;
         }
 
