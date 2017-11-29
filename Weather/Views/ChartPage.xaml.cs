@@ -112,7 +112,7 @@ namespace Weather
 
                         using (SKManagedStream skStream = new SKManagedStream(memStream))
                         {
-                            hours_weatherstatusthumb.AddOrUpdate(key, SKBitmap.Decode(skStream), (k, v) => v);
+          hours_weatherstatusthumb.AddOrUpdate(key, SKBitmap.Decode(skStream), (k, v) => v);
 
 
                             Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());

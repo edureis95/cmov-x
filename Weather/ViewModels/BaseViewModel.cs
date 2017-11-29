@@ -18,6 +18,13 @@ namespace Weather
             set { SetProperty(ref isBusy, value); }
         }
 
+        bool isNotBusy = false;
+        public bool IsNotBusy
+        {
+            get { return isNotBusy; }
+            set { SetProperty(ref isNotBusy, value); }
+        }
+
         string title = string.Empty;
         public string Title
         {

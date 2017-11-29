@@ -26,6 +26,7 @@ namespace Weather
             BindingContext = this.city;
         }
 
+   
         async void Save_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new InfoPastDays(city));

@@ -15,15 +15,15 @@ namespace Weather
         public City city;
         public PastDay pastday { get; set; }
 
-       
-      
+
+
         public PastDayViewModel(City city)
         {
             Title = "Past Day";
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(city));
-            
+
         }
- 
+
 
         async Task ExecuteLoadItemsCommand(City city)
         {
@@ -31,6 +31,7 @@ namespace Weather
                 return;
 
             IsBusy = true;
+            IsNotBusy = false;
 
             try
             {
@@ -45,6 +46,7 @@ namespace Weather
             finally
             {
                 IsBusy = false;
+                IsNotBusy = true;
             }
         }
     }

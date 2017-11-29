@@ -9,14 +9,14 @@ using Xamarin.Forms.Xaml;
 
 namespace Weather
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class InfoPastDays : ContentPage
 	{
-
+        
         PastDayViewModel viewModel;
-        Boolean isBusy;
+        bool show { get; set; }
 
-    
         public InfoPastDays ()
 		{
 			InitializeComponent ();
@@ -25,14 +25,14 @@ namespace Weather
         public InfoPastDays(City city)
         {
             InitializeComponent();
-            isBusy = false;
             BindingContext = viewModel = new PastDayViewModel(city);
+            show =  !viewModel.IsBusy;
         }
-        protected override async void OnAppearing()
+        protected override  void OnAppearing()
         {
             base.OnAppearing();
             viewModel.LoadItemsCommand.Execute(null);
-            details.IsEnabled = true;
+      
         }
 
 
