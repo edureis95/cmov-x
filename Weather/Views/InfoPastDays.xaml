@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.InfoPastDays" Title="{Binding pastday.Forecast.Forecastday[0].Date}" >
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Details" Clicked="click_view_details" />
+     <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="details" Text="Details" Clicked="click_view_details" IsEnabled="false"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <Grid ColumnSpacing="0" Padding="40,30,40,30">

@@ -31,10 +31,8 @@ namespace Weather
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-
             viewModel.LoadItemsCommand.Execute(null);
-       
+            details.IsEnabled = true;
         }
 
 

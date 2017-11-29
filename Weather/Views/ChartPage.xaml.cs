@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,7 +16,11 @@ namespace Weather
     public partial class ChartPage : ContentPage
     {
         Dictionary<int, string> hours_temperature = new Dictionary<int, string>();
+        Dictionary<int, SKBitmap> hours_weatherstatusthumb = new Dictionary<int, SKBitmap>();
+
         PastDayViewModel viewModel;
+
+        // SKCanvas canvas;
         float screen_width;
         float screen_height;
 
@@ -22,18 +28,20 @@ namespace Weather
         public ChartPage(PastDayViewModel viewModel)
         {
             InitializeComponent();
+
             this.viewModel = viewModel;
             load_hour_temperature();
+            load_bitmaps();
         }
 
         public ChartPage()
         {
             InitializeComponent();
-
         }
 
         public void load_hour_temperature()
         {
+            Console.WriteLine("------------------->" + viewModel);
             hours_temperature[0] = viewModel.pastday.Forecast.Forecastday[0].Hour[0].TempC.ToString();
             hours_temperature[3] = viewModel.pastday.Forecast.Forecastday[0].Hour[3].TempC.ToString();
             hours_temperature[6] = viewModel.pastday.Forecast.Forecastday[0].Hour[6].TempC.ToString();
@@ -43,6 +51,19 @@ namespace Weather
             hours_temperature[15] = viewModel.pastday.Forecast.Forecastday[0].Hour[15].TempC.ToString();
             hours_temperature[18] = viewModel.pastday.Forecast.Forecastday[0].Hour[18].TempC.ToString();
             hours_temperature[21] = viewModel.pastday.Forecast.Forecastday[0].Hour[21].TempC.ToString();
+        }
+
+        public void load_bitmaps()
+        {
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[0].Condition.Icon, 0);
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[3].Condition.Icon, 3);
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[6].Condition.Icon, 6);
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[9].Condition.Icon, 9);
+
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[12].Condition.Icon, 12);
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[15].Condition.Icon, 15);
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[18].Condition.Icon, 18);
+            load_bitmap("https:" + viewModel.pastday.Forecast.Forecastday[0].Hour[21].Condition.Icon, 21);
         }
 
         SKPaint fill_axis_line = new SKPaint
@@ -72,6 +93,35 @@ namespace Weather
             Color = SKColors.Black,
             TextSize = 30
         };
+
+
+        public void load_bitmap(string url, int key)
+        {
+            Uri uri = new Uri(url);
+            WebRequest request = WebRequest.Create(uri);
+            request.BeginGetResponse((IAsyncResult arg) =>
+            {
+                try
+                {
+                    using (Stream stream = request.EndGetResponse(arg).GetResponseStream())
+                    using (MemoryStream memStream = new MemoryStream())
+                    {
+                        stream.CopyTo(memStream);
+                        memStream.Seek(0, SeekOrigin.Begin);
+
+                        using (SKManagedStream skStream = new SKManagedStream(memStream))
+                        {
+                            hours_weatherstatusthumb.Add(key, SKBitmap.Decode(skStream));
+                            Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());
+                        }
+                    }
+                }
+                catch
+                {
+                }
+
+            }, null);
+        }
 
         private void canvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
@@ -146,7 +196,16 @@ namespace Weather
                 temp_text_y_pos -= (7 * screen_height) / 150;
             }
 
+            for (int i = 0; i < 8; i++)
+            {
+                int thumbkey = 3 * i;
+                if (hours_weatherstatusthumb.ContainsKey(thumbkey)){
+                    SKBitmap thumb = hours_weatherstatusthumb[thumbkey];
+                    if (thumb != null && !thumb.IsNull)
+                        canvas.DrawBitmap(thumb, (float)points[i].X, (float)points[i].Y - 10, null);
+                }
 
+            }
         }
 
         private float convert_temp_to_pos(string tempC)
