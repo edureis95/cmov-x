@@ -14,7 +14,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
             <ActivityIndicator Color="Blue"  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-            <Label Text="{Binding pastday.PastLocation.Name}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
+            <Label Text="{Binding pastday.PastLocation.Name}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
             <Label Text="{Binding pastday.Forecast.Forecastday[0].Date}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
             <Label Text="Min Temperature:" HorizontalOptions="Center"  IsVisible="{Binding IsNotBusy}" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="0" />
             <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
