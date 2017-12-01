@@ -5,7 +5,10 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <Grid ColumnSpacing="0" Padding="40,30,40,30">
+
+       
+
+        <Grid ColumnSpacing="0" Padding="40,30,40,30"  >
           
             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -13,21 +16,36 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+            
             <ActivityIndicator Color="Blue"  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-            <Label Text="{Binding pastday.PastLocation.Name}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Date}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
-            <Label Text="Min Temperature:" HorizontalOptions="Center"  IsVisible="{Binding IsNotBusy}" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
-            <Label Text="Max Temperature:" HorizontalOptions="Center"  VerticalOptions="Center" IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="2" Grid.Column="1" />
-            <Label Text="Max Wind:" HorizontalOptions="Center" VerticalOptions="Center"  IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="3" Grid.Column="1" />
-            <Label Text="Sunrise:" HorizontalOptions="Center" VerticalOptions="Center"  IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Astro.Sunrise, StringFormat='{0}'}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="4" Grid.Column="1" />
-            <Label Text="Sunset:" HorizontalOptions="Center" VerticalOptions="Center"  IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="5" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Astro.Sunset, StringFormat='{0}'}" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="5" Grid.Column="1" />
-            <Label Text="Avg Humidity:" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" IsVisible="{Binding IsNotBusy}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="6" Grid.Column="0" />
-            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold" IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="6" Grid.Column="1" />
+            
+            <Label Text="{Binding pastday.PastLocation.Name}"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
+           <Label Text="{Binding pastday.Forecast.Forecastday[0].Date}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
+
+
+            <Label Text="Min Temperature:" HorizontalOptions="Center" IsVisible="{Binding IsNotBusy}" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="0" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MintempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+
+
+            <Label Text="Max Temperature:" HorizontalOptions="Center" IsVisible="{Binding IsNotBusy}" VerticalOptions="Center"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="0" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="2" Grid.Column="1" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxtempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="2" Grid.Column="1" />
+
+
+            <Label Text="Max Wind:" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="0" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="3" Grid.Column="1" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.MaxwindMph, StringFormat='{0} Mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="3" Grid.Column="1" />
+
+
+
+
+            <Label Text="Sunrise:" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsNotBusy}"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="0" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Astro.Sunrise, StringFormat='{0}'}"  FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="4" Grid.Column="1" />
+            <Label Text="Sunset:" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsNotBusy}"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="5" Grid.Column="0" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Astro.Sunset, StringFormat='{0}'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="5" Grid.Column="1" />
+            <Label Text="Avg Humidity:" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding IsNotBusy}" LineBreakMode="NoWrap"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="6" Grid.Column="0" />
+            <Label Text="{Binding pastday.Forecast.Forecastday[0].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="6" Grid.Column="1" />
                        
         </Grid>
     </ScrollView>

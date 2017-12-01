@@ -31,8 +31,8 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("celcius", true);
                 viewModel.ChangeSettingsValueByName("fahrenheit", false);
                 viewModel.SaveSettings();
-                viewModel.SetCelcius(true);
-                
+                App.IsCelsius = true;
+
             }
             else
             {
@@ -40,7 +40,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("celcius", false);
                 viewModel.ChangeSettingsValueByName("fahrenheit", true);
                 viewModel.SaveSettings();
-                viewModel.SetCelcius(false);
+                App.IsCelsius = false;
             }
         }
 
@@ -52,7 +52,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("celcius", false);
                 viewModel.ChangeSettingsValueByName("fahrenheit", true);
                 viewModel.SaveSettings();
-                viewModel.SetCelcius(false);
+                App.IsCelsius = false;
             }
             else
             {
@@ -60,7 +60,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("celcius", true);
                 viewModel.ChangeSettingsValueByName("fahrenheit", false);
                 viewModel.SaveSettings();
-                viewModel.SetCelcius(true);
+                App.IsCelsius = true;
             }
         }
 
@@ -72,7 +72,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("mph", false);
                 viewModel.ChangeSettingsValueByName("kph", true);
                 viewModel.SaveSettings();
-                viewModel.SetKph(true);
+                App.IsKph = true;
             }
             else
             {
@@ -80,7 +80,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("mph", true);
                 viewModel.ChangeSettingsValueByName("kph", false);
                 viewModel.SaveSettings();
-                viewModel.SetKph(false);
+                App.IsKph = false;
             }
         }
 
@@ -92,7 +92,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("mph", true);
                 viewModel.ChangeSettingsValueByName("kph", false);
                 viewModel.SaveSettings();
-                viewModel.SetKph(false);
+                App.IsKph = false;
             }
             else
             {
@@ -100,7 +100,7 @@ namespace Weather
                 viewModel.ChangeSettingsValueByName("mph", false);
                 viewModel.ChangeSettingsValueByName("kph", true);
                 viewModel.SaveSettings();
-                viewModel.SetKph(true);
+                App.IsKph = true;
             }
         }
 	}

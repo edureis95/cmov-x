@@ -23,7 +23,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Location.Name}" HorizontalOptions="Start"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="CharacterWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Large" Grid.Row="0" Grid.Column="0" />
                                 <Label Text="{Binding Location.Region}" HorizontalOptions="Start"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="CharacterWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Large" Grid.Row="0" Grid.Column="1" />
-                                    <Label Text="{Binding Current.TempC, StringFormat='{0}ºC'}" HorizontalOptions="Center"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="0" Grid.Column="2" />
+                                <Label Text="{Binding Current.TempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}"  HorizontalOptions="Center"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="0" Grid.Column="2" />
+                                <Label Text="{Binding Current.TempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}"  HorizontalOptions="Center"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="0" Grid.Column="2" />
                                 <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="3" />
 
                             </Grid>

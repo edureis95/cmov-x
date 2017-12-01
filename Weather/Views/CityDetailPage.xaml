@@ -18,10 +18,12 @@
 
 
             <Label Text="Temperature:" HorizontalOptions="Center"  VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="0" />
-            <Label Text="{Binding city.Current.TempC, StringFormat='{0}ºC'}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+            <Label Text="{Binding city.Current.TempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+            <Label Text="{Binding city.Current.TempF, StringFormat='{0}ºF'}"  IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
 
             <Label Text="Wind:" HorizontalOptions="Center" VerticalOptions="Center"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="0" />
-            <Label Text="{Binding city.Current.WindKph, StringFormat='{0} km/h'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
+            <Label Text="{Binding city.Current.WindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
+            <Label Text="{Binding city.Current.WindMph, StringFormat='{0} Mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
 
             <Label Text="Precipitation:" HorizontalOptions="Center" VerticalOptions="Center"   LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="0" />
             <Label Text="{Binding city.Current.PrecipMm, StringFormat='{0} Mm'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="3" Grid.Column="1"/>

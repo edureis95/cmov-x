@@ -63,12 +63,15 @@ namespace Weather
 
         public void SetCelcius(bool value)
         {
+            
             IsCelsius = value;
+            IsFah = !value;
         }
 
         public void SetKph(bool value)
         {
             IsKph = value;
+            IsMph = !value;
         }
     }
 }
