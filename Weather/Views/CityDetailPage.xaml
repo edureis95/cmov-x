@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding Location.Name, StringFormat='Current {0}'}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding city.Location.Name, StringFormat='Current {0}'}">
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Forecast" Clicked="Forecast" />
         <ToolbarItem Text="Past days" Clicked="CheckPast_Days" />
     </ContentPage.ToolbarItems>
     <ScrollView>
@@ -12,24 +13,25 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Text="{Binding Location.Name}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
-            <Image Source="{Binding Current.Condition.Icon, StringFormat='https:{0}'}" HorizontalOptions="Fill" VerticalOptions="Fill"  Grid.Row="0" Grid.Column="1"  />
+            <Label Text="{Binding city.Location.Name}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
+            <Image Source="{Binding city.Current.Condition.Icon, StringFormat='https:{0}'}" HorizontalOptions="Fill" VerticalOptions="Fill"  Grid.Row="0" Grid.Column="1"  />
 
 
             <Label Text="Temperature:" HorizontalOptions="Center"  VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="0" />
-            <Label Text="{Binding Current.TempC, StringFormat='{0}ºC'}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+            <Label Text="{Binding city.Current.TempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
+            <Label Text="{Binding city.Current.TempF, StringFormat='{0}ºF'}"  IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Large" Grid.Row="1" Grid.Column="1" />
 
             <Label Text="Wind:" HorizontalOptions="Center" VerticalOptions="Center"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="0" />
-            <Label Text="{Binding Current.WindKph, StringFormat='{0} km/h'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
+            <Label Text="{Binding city.Current.WindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
+            <Label Text="{Binding city.Current.WindMph, StringFormat='{0} Mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large"  Grid.Row="2" Grid.Column="1" />
 
             <Label Text="Precipitation:" HorizontalOptions="Center" VerticalOptions="Center"   LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="0" />
-            <Label Text="{Binding Current.PrecipMm, StringFormat='{0} Mm'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="3" Grid.Column="1"/>
+            <Label Text="{Binding city.Current.PrecipMm, StringFormat='{0} Mm'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="3" Grid.Column="1"/>
 
             <Label Text="Humidity:" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="0" />
-            <Label Text="{Binding Current.Humidity, StringFormat='{0}%'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="4" Grid.Column="1" />
+            <Label Text="{Binding city.Current.Humidity, StringFormat='{0}%'}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" Grid.Row="4" Grid.Column="1" />
 
-            
-          
+       
             </Grid>
  
   

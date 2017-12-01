@@ -45,7 +45,7 @@ namespace Weather
 
         public void load_hour_temperature()
         {
-
+            if (App.IsCelsius) { 
             hours_temperature[0] = viewModel.pastday.Forecast.Forecastday[0].Hour[0].TempC.ToString();
             hours_temperature[3] = viewModel.pastday.Forecast.Forecastday[0].Hour[3].TempC.ToString();
             hours_temperature[6] = viewModel.pastday.Forecast.Forecastday[0].Hour[6].TempC.ToString();
@@ -55,6 +55,18 @@ namespace Weather
             hours_temperature[15] = viewModel.pastday.Forecast.Forecastday[0].Hour[15].TempC.ToString();
             hours_temperature[18] = viewModel.pastday.Forecast.Forecastday[0].Hour[18].TempC.ToString();
             hours_temperature[21] = viewModel.pastday.Forecast.Forecastday[0].Hour[21].TempC.ToString();
+            } else
+            {
+                hours_temperature[0] = viewModel.pastday.Forecast.Forecastday[0].Hour[0].TempF.ToString();
+                hours_temperature[3] = viewModel.pastday.Forecast.Forecastday[0].Hour[3].TempF.ToString();
+                hours_temperature[6] = viewModel.pastday.Forecast.Forecastday[0].Hour[6].TempF.ToString();
+                hours_temperature[9] = viewModel.pastday.Forecast.Forecastday[0].Hour[9].TempF.ToString();
+
+                hours_temperature[12] = viewModel.pastday.Forecast.Forecastday[0].Hour[12].TempF.ToString();
+                hours_temperature[15] = viewModel.pastday.Forecast.Forecastday[0].Hour[15].TempF.ToString();
+                hours_temperature[18] = viewModel.pastday.Forecast.Forecastday[0].Hour[18].TempF.ToString();
+                hours_temperature[21] = viewModel.pastday.Forecast.Forecastday[0].Hour[21].TempF.ToString();
+            }
 
             float min = float.Parse(hours_temperature[0]);
             for (int i = 3; i <= 21;){
@@ -134,6 +146,7 @@ namespace Weather
 
                         using (SKManagedStream skStream = new SKManagedStream(memStream))
                         {
+
                             hours_weatherstatusthumb.AddOrUpdate(key, SKBitmap.Decode(skStream), (k, v) => v);
                             Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());
                         }
@@ -203,28 +216,35 @@ namespace Weather
             {
                 //linhas que ligam os pontos do grafico
                 canvas.DrawLine((float)points[i].X, (float)points[i].Y, (float)points[i + 1].X, (float)points[i + 1].Y, fill_line);
-                canvas.DrawText(hours_temperature[hour_text] + "C", (float)points[i].X-10, (float)points[i].Y+30, fill_temp);
+                
+                if(App.IsCelsius)
+                    canvas.DrawText(hours_temperature[hour_text] + "ºC", (float)points[i].X-10, (float)points[i].Y+30, fill_temp);
+                else
+                    canvas.DrawText(hours_temperature[hour_text] + "ºF", (float)points[i].X - 10, (float)points[i].Y + 30, fill_temp);
                 //desenho da legenda das horas 
                 canvas.DrawText(hour_text.ToString() + "h", (float)points[i].X - adjustment_x, temp_y2 + adjustment_y, fill_text);
                 hour_text += 3;
             }
             //ultimo elemento da legenda das horas 
             canvas.DrawText(hour_text.ToString() + "h", (float)points[7].X - adjustment_x, temp_y2 + adjustment_y, fill_text);
-            canvas.DrawText(hours_temperature[hour_text] + "C", (float)points[7].X-10, (float)points[7].Y+30, fill_temp);
 
-            //legenda do eixo da temperatura
-           /* int temp_text = 0;
-            if (min_temperature > 0)
-                temp_text = 0;
+            if (App.IsCelsius)
+                canvas.DrawText(hours_temperature[hour_text] + "ºC", (float)points[7].X-10, (float)points[7].Y+30, fill_temp);
             else
-                temp_text = (int)min_temperature - 2;
-            float temp_text_y_pos = temp_y2;
-            for (int i = 0; i < 10; i++)
-            {
-                canvas.DrawText(temp_text.ToString(), hours_x1 - adjustment_y, temp_text_y_pos, fill_text);
-                temp_text += 5;
-                temp_text_y_pos -= (7 * screen_height) / 150;
-            }*/
+                canvas.DrawText(hours_temperature[hour_text] + "ºF", (float)points[7].X - 10, (float)points[7].Y + 30, fill_temp);
+            //legenda do eixo da temperatura
+            /* int temp_text = 0;
+             if (min_temperature > 0)
+                 temp_text = 0;
+             else
+                 temp_text = (int)min_temperature - 2;
+             float temp_text_y_pos = temp_y2;
+             for (int i = 0; i < 10; i++)
+             {
+                 canvas.DrawText(temp_text.ToString(), hours_x1 - adjustment_y, temp_text_y_pos, fill_text);
+                 temp_text += 5;
+                 temp_text_y_pos -= (7 * screen_height) / 150;
+             }*/
 
             //imagens da temperatura 
 

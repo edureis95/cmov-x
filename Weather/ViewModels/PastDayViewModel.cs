@@ -20,6 +20,10 @@ namespace Weather
         public PastDayViewModel(City city)
         {
             Title = "Past Day";
+            IsFah = !App.IsCelsius;
+            IsCelsius = App.IsCelsius;
+            IsMph = !App.IsKph;
+            IsKph = App.IsKph;
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(city));
 
         }

@@ -39,6 +39,8 @@ namespace Weather
             await Navigation.PushAsync(new SettingsPage());
         }
 
+ 
+       
         protected override void OnAppearing()
         {
             base.OnAppearing();

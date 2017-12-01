@@ -8,6 +8,8 @@ namespace Weather
     {
         public static bool UseMockDataStore = false;
         public static string BackendUrl = "https://api.apixu.com";
+        public static bool IsCelsius = true;
+        public static bool IsKph = true;
 
         public App()
         {

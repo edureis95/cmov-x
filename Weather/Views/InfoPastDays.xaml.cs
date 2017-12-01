@@ -31,7 +31,8 @@ namespace Weather
         protected override  void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.LoadItemsCommand.Execute(null);
+            if(viewModel.pastday == null)
+                viewModel.LoadItemsCommand.Execute(null);
       
         }
 

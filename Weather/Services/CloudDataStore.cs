@@ -66,7 +66,8 @@ namespace Weather
             List<SearchModel> cities = new List<SearchModel>();
             if ( CrossConnectivity.Current.IsConnected)
             {
-                var json = await client.GetStringAsync($"v1/search.json?key=27dee16894ba4fe797995725172411&q=" + name);
+                var json = await client.GetStringAsync($"v1/search.json?key=cd20888511644f0d9ca151930173011&q=" + name);
+
                 cities = await Task.Run(() => JsonConvert.DeserializeObject<List<SearchModel>>(json));  
             }
             return cities;
@@ -77,7 +78,7 @@ namespace Weather
             if ( CrossConnectivity.Current.IsConnected)
             {
            
-                var json = await client.GetStringAsync($"v1/history.json?key=27dee16894ba4fe797995725172411&q="+id+"&dt="+date);
+                var json = await client.GetStringAsync($"v1/history.json?key=cd20888511644f0d9ca151930173011&q=" +id+"&dt="+date);
 
                 var city = await Task.Run(() => JsonConvert.DeserializeObject<PastDay>(json));
                 return city;
@@ -86,7 +87,22 @@ namespace Weather
             return null;
         }
 
-   
+        public async Task<ForecastJson> GetForecast(string id)
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+
+                var json = await client.GetStringAsync($"v1/forecast.json?key=cd20888511644f0d9ca151930173011&q=" +id+"&days=7");
+
+                var forecast = await Task.Run(() => JsonConvert.DeserializeObject<ForecastJson>(json));
+                return forecast;
+
+            }
+            return null;
+        }
+
+
+
         public async Task<bool> AddCityAsync(Item item)
         {
             items.Add(item);

@@ -25,6 +25,7 @@ namespace Weather
             set { SetProperty(ref isNotBusy, value); }
         }
 
+
         bool isCelsius = true;
         public bool IsCelsius
         {
@@ -32,11 +33,25 @@ namespace Weather
             set { SetProperty(ref isCelsius, value); }
         }
 
+        bool isFah = false;
+        public bool IsFah
+        {
+            get { return isFah; }
+            set { SetProperty(ref isFah, value); }
+        }
+
         bool isKph = true;
         public bool IsKph
         {
             get { return isKph; }
             set { SetProperty(ref isKph, value); }
+        }
+
+        bool isMph = false;
+        public bool IsMph
+        {
+            get { return isMph; }
+            set { SetProperty(ref isMph, value); }
         }
 
         string title = string.Empty;

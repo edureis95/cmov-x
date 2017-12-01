@@ -48,6 +48,7 @@ namespace Weather
                 return;
 
             IsBusy = true;
+            
 
             try
             {
@@ -57,7 +58,9 @@ namespace Weather
 
                 foreach (var city in cities)
                 {
-                 
+
+                    city.IsFah = !App.IsCelsius;
+                    city.IsCelsius = App.IsCelsius;
                     Cities.Add(city);
                 }
                 

@@ -15,8 +15,17 @@ namespace Weather {
     get;
     set;
    }
-
-   public string Id
+        public bool IsFah
+        {
+            get;
+            set;
+        }
+        public bool IsCelsius
+        {
+            get;
+            set;
+        }
+        public string Id
     {
         get;
         set;
