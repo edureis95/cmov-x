@@ -13,6 +13,9 @@ namespace Weather
 
         public App()
         {
+            SettingsViewModel settingsView = new SettingsViewModel();
+            IsCelsius = settingsView.settings.Find(pair => pair.Key == "celcius").Value;
+            IsKph = settingsView.settings.Find(pair => pair.Key == "kph").Value;
             InitializeComponent();
 
             if (UseMockDataStore)
