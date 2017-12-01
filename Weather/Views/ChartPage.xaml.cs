@@ -268,7 +268,10 @@ namespace Weather
             if (have_negatives)
                 new_temp = float.Parse(tempC) + Math.Abs(min_temperature) + 2;
             else
-                new_temp = float.Parse(tempC);  
+                new_temp = float.Parse(tempC);
+            if(!App.IsCelsius){
+                new_temp -= 32;
+            }
             return (new_temp * (70 * screen_height / 150)) / 45;
         }
 
