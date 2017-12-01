@@ -47,7 +47,7 @@ namespace Weather
                     City city;
                     try
                     {
-                        var json = await client.GetStringAsync($"v1/current.json?key=27dee16894ba4fe797995725172411&q=" + item.Description);
+                        var json = await client.GetStringAsync($"v1/current.json?key=cd20888511644f0d9ca151930173011&q=" + item.Description);
                         city = await Task.Run(() => JsonConvert.DeserializeObject<City>(json));
                     }
                     catch(Exception exception)
