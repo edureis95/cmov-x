@@ -34,6 +34,11 @@ namespace Weather
             await Navigation.PushAsync(new NewItemPage());
         }
 
+        async void Settings_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

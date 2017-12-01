@@ -22,7 +22,7 @@ namespace Weather
             client.BaseAddress = new Uri($"{App.BackendUrl}/");
             cities = new List<City>();
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string filename = Path.Combine(path, "Items");
+            string filename = Path.Combine(path, "ListItems");
 
             if (File.Exists(filename))
             {
@@ -98,7 +98,7 @@ namespace Weather
         {
             var itemsJSON = JsonConvert.SerializeObject(items);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string filename = Path.Combine(path, "Items");
+            string filename = Path.Combine(path, "ListItems");
 
             using (var streamWriter = new StreamWriter(filename))
             {
