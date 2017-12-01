@@ -22,7 +22,7 @@ namespace Weather
             client.BaseAddress = new Uri($"{App.BackendUrl}/");
             cities = new List<City>();
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string filename = Path.Combine(path, "Items");
+            string filename = Path.Combine(path, "ListItems");
 
             if (File.Exists(filename))
             {
@@ -67,6 +67,7 @@ namespace Weather
             if ( CrossConnectivity.Current.IsConnected)
             {
                 var json = await client.GetStringAsync($"v1/search.json?key=cd20888511644f0d9ca151930173011&q=" + name);
+
                 cities = await Task.Run(() => JsonConvert.DeserializeObject<List<SearchModel>>(json));  
             }
             return cities;
@@ -113,7 +114,7 @@ namespace Weather
         {
             var itemsJSON = JsonConvert.SerializeObject(items);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string filename = Path.Combine(path, "Items");
+            string filename = Path.Combine(path, "ListItems");
 
             using (var streamWriter = new StreamWriter(filename))
             {

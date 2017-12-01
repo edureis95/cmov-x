@@ -24,6 +24,10 @@ namespace Weather
         // SKCanvas canvas;
         float screen_width;
         float screen_height;
+        float min_temperature;
+
+        bool have_negatives = false;
+
 
         public ChartPage(PastDayViewModel viewModel)
         {
@@ -51,6 +55,17 @@ namespace Weather
             hours_temperature[15] = viewModel.pastday.Forecast.Forecastday[0].Hour[15].TempC.ToString();
             hours_temperature[18] = viewModel.pastday.Forecast.Forecastday[0].Hour[18].TempC.ToString();
             hours_temperature[21] = viewModel.pastday.Forecast.Forecastday[0].Hour[21].TempC.ToString();
+
+            float min = float.Parse(hours_temperature[0]);
+            for (int i = 3; i <= 21;){
+                if (float.Parse(hours_temperature[i]) < min)
+                    min = float.Parse(hours_temperature[i]);
+                i += 3;
+            }
+            min_temperature = min;
+            if (min_temperature < 0) have_negatives = true;
+            else have_negatives = false;
+
         }
 
         public void load_bitmaps()
@@ -90,8 +105,15 @@ namespace Weather
         SKPaint fill_text = new SKPaint
         {
             Style = SKPaintStyle.Fill,
+            Color = SKColors.Blue,
+            TextSize = 30,
+        };
+
+        SKPaint fill_temp = new SKPaint
+        {
+            Style = SKPaintStyle.Fill,
             Color = SKColors.Black,
-            TextSize = 30
+            TextSize = 20
         };
 
 
@@ -112,9 +134,8 @@ namespace Weather
 
                         using (SKManagedStream skStream = new SKManagedStream(memStream))
                         {
-          hours_weatherstatusthumb.AddOrUpdate(key, SKBitmap.Decode(skStream), (k, v) => v);
 
-
+                            hours_weatherstatusthumb.AddOrUpdate(key, SKBitmap.Decode(skStream), (k, v) => v);
                             Device.BeginInvokeOnMainThread(() => CanvasView.InvalidateSurface());
                         }
                     }
@@ -143,15 +164,16 @@ namespace Weather
             float hours_y1 = screen_height - screen_height / 3;
             float hours_x2 = screen_width - screen_width / 9;
             float hours_y2 = screen_height - screen_height / 3;
-            canvas.DrawLine(hours_x1, hours_y1, hours_x2, hours_y2, fill_axis_line);
+          //  canvas.DrawLine(hours_x1, hours_y1, hours_x2, hours_y2, fill_axis_line);
 
             //eixo da temperatura
+
 
             float temp_x1 = screen_width - (8 * screen_width) / 9;
             float temp_y1 = screen_height - (4 * screen_height) / 5;
             float temp_x2 = screen_width - (8 * screen_width) / 9;
             float temp_y2 = screen_height - screen_height / 3;
-            canvas.DrawLine(temp_x1, temp_y1, temp_x2, temp_y2, fill_axis_line);
+           // canvas.DrawLine(temp_x1, temp_y1, temp_x2, temp_y2, fill_axis_line);
 
 
             //pontos da temperatura
@@ -182,21 +204,30 @@ namespace Weather
             {
                 //linhas que ligam os pontos do grafico
                 canvas.DrawLine((float)points[i].X, (float)points[i].Y, (float)points[i + 1].X, (float)points[i + 1].Y, fill_line);
+                canvas.DrawText(hours_temperature[hour_text] + "C", (float)points[i].X-10, (float)points[i].Y+30, fill_temp);
                 //desenho da legenda das horas 
                 canvas.DrawText(hour_text.ToString() + "h", (float)points[i].X - adjustment_x, temp_y2 + adjustment_y, fill_text);
                 hour_text += 3;
             }
             //ultimo elemento da legenda das horas 
             canvas.DrawText(hour_text.ToString() + "h", (float)points[7].X - adjustment_x, temp_y2 + adjustment_y, fill_text);
+            canvas.DrawText(hours_temperature[hour_text] + "C", (float)points[7].X-10, (float)points[7].Y+30, fill_temp);
 
-            int temp_text = 0;
+            //legenda do eixo da temperatura
+           /* int temp_text = 0;
+            if (min_temperature > 0)
+                temp_text = 0;
+            else
+                temp_text = (int)min_temperature - 2;
             float temp_text_y_pos = temp_y2;
             for (int i = 0; i < 10; i++)
             {
                 canvas.DrawText(temp_text.ToString(), hours_x1 - adjustment_y, temp_text_y_pos, fill_text);
                 temp_text += 5;
                 temp_text_y_pos -= (7 * screen_height) / 150;
-            }
+            }*/
+
+            //imagens da temperatura 
 
             for (int i = 0; i < 8; i++)
             {
@@ -205,7 +236,7 @@ namespace Weather
                 {
                     SKBitmap thumb = hours_weatherstatusthumb[thumbkey];
                     if (thumb != null && !thumb.IsNull)
-                        canvas.DrawBitmap(thumb, (float)points[i].X, (float)points[i].Y - 10, null);
+                        canvas.DrawBitmap(thumb, (float)points[i].X-20, (float)points[i].Y-70, null);
                 }
 
             }
@@ -213,8 +244,13 @@ namespace Weather
 
         private float convert_temp_to_pos(string tempC)
         {
-
-            return (float.Parse(tempC) * (70 * screen_height / 150)) / 45;
+          
+            float new_temp;
+            if (have_negatives)
+                new_temp = float.Parse(tempC) + Math.Abs(min_temperature) + 2;
+            else
+                new_temp = float.Parse(tempC);  
+            return (new_temp * (70 * screen_height / 150)) / 45;
         }
 
     }

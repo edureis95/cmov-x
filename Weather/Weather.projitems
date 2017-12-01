@@ -9,7 +9,10 @@
     <Import_RootNamespace>Weather</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="$(MSBuildThisFileDirectory)Models\Forecast.cs" />
+=======
+>>>>>>> origin/master
     <Compile Include="$(MSBuildThisFileDirectory)Models\Search.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PastDay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
@@ -17,14 +20,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ForecastViewModel.cs" />
+=======
+>>>>>>> origin/master
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PastDayViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CityDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CitiesViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="$(MSBuildThisFileDirectory)Views\ForecastPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsViewModel.cs" />
+	  </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\InfoPastDays.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +64,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ChartPage.xaml.cs">
       <DependentUpon>ChartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -84,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ForecastPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
