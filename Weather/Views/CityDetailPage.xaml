@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage" Title="{Binding city.Location.Name, StringFormat='Current {0}'}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Weather.CityDetailPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Forecast" Clicked="Forecast" />
         <ToolbarItem Text="Past days" Clicked="CheckPast_Days" />

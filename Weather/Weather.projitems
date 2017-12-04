@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Forecast.cs" />
-
     <Compile Include="$(MSBuildThisFileDirectory)Models\Search.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PastDay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
@@ -18,9 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
-
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ForecastViewModel.cs" />
-
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PastDayViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CityDetailViewModel.cs" />
@@ -91,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ForecastPage.xaml">
-	      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

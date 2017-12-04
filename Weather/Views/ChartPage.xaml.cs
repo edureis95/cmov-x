@@ -20,6 +20,7 @@ namespace Weather
         ConcurrentDictionary<int, SKBitmap> hours_weatherstatusthumb = new ConcurrentDictionary<int, SKBitmap>();
 
         PastDayViewModel viewModel;
+        Forecastday day;
 
         // SKCanvas canvas;
         float screen_width;
@@ -38,11 +39,73 @@ namespace Weather
             load_bitmaps();
         }
 
+        public ChartPage(Forecastday day)
+        {
+            InitializeComponent();
+
+            this.day = day;
+            load_hour_temperatureforecast();
+            load_bitmapsforecast();
+        }
+
+
+
         public ChartPage()
         {
             InitializeComponent();
         }
+        public void load_hour_temperatureforecast()
+        {
+            if (App.IsCelsius)
+            {
+                hours_temperature[0] = day.Hour[0].TempC.ToString();
+                hours_temperature[3] = day.Hour[3].TempC.ToString();
+                hours_temperature[6] = day.Hour[6].TempC.ToString();
+                hours_temperature[9] = day.Hour[9].TempC.ToString();
 
+                hours_temperature[12] = day.Hour[12].TempC.ToString();
+                hours_temperature[15] = day.Hour[15].TempC.ToString();
+                hours_temperature[18] = day.Hour[18].TempC.ToString();
+                hours_temperature[21] = day.Hour[21].TempC.ToString();
+            }
+            else
+            {
+                hours_temperature[0] = day.Hour[0].TempF.ToString();
+                hours_temperature[3] = day.Hour[3].TempF.ToString();
+                hours_temperature[6] = day.Hour[6].TempF.ToString();
+                hours_temperature[9] = day.Hour[9].TempF.ToString();
+
+                hours_temperature[12] = day.Hour[12].TempF.ToString();
+                hours_temperature[15] = day.Hour[15].TempF.ToString();
+                hours_temperature[18] = day.Hour[18].TempF.ToString();
+                hours_temperature[21] = day.Hour[21].TempF.ToString();
+            }
+
+            float min = float.Parse(hours_temperature[0]);
+            for (int i = 3; i <= 21;)
+            {
+                if (float.Parse(hours_temperature[i]) < min)
+                    min = float.Parse(hours_temperature[i]);
+                i += 3;
+            }
+            min_temperature = min;
+            if (min_temperature < 0) have_negatives = true;
+            else have_negatives = false;
+
+        }
+
+        public void load_bitmapsforecast()
+        {
+            load_bitmap("https:" + day.Hour[0].Condition.Icon, 0);
+            load_bitmap("https:" + day.Hour[3].Condition.Icon, 3);
+            load_bitmap("https:" + day.Hour[6].Condition.Icon, 6);
+            load_bitmap("https:" + day.Hour[9].Condition.Icon, 9);
+
+            load_bitmap("https:" + day.Hour[12].Condition.Icon, 12);
+            load_bitmap("https:" + day.Hour[15].Condition.Icon, 15);
+            load_bitmap("https:" + day.Hour[18].Condition.Icon, 18);
+            load_bitmap("https:" + day.Hour[21].Condition.Icon, 21);
+        }
         public void load_hour_temperature()
         {
             if (App.IsCelsius) { 

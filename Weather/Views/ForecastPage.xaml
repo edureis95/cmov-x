@@ -13,64 +13,28 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ActivityIndicator Color="Blue"  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
-
-            <Label Text="Day" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
-            <Label Text="Min T" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
-            <Label Text="Max T" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="2" />
-            <Label Text="Wind"  IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="3" />
-            <Label Text="Humidity" IsVisible="{Binding IsNotBusy}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="4" />
-
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Date}"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Small" Grid.Row="1" Grid.Column="0" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="1" Grid.Column="3" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" Grid.Row="1" Grid.Column="4" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.MintempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.MaxtempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="1" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[1].Day.MaxwindMph, StringFormat='{0} mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="1" Grid.Column="3" />
-
-
-
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Date}"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Small" Grid.Row="2" Grid.Column="0" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="2" Grid.Column="3" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" Grid.Row="2" Grid.Column="4" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.MintempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.MaxtempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="2" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[2].Day.MaxwindMph, StringFormat='{0} mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="2" Grid.Column="3" />
-
-
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Date}"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Small" Grid.Row="3" Grid.Column="0" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="3" Grid.Column="3" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" Grid.Row="3" Grid.Column="4" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.MintempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.MaxtempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="3" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[3].Day.MaxwindMph, StringFormat='{0} mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="3" Grid.Column="3" />
-
-
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Date}"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Small" Grid.Row="4" Grid.Column="0" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="4" Grid.Column="3" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" Grid.Row="4" Grid.Column="4" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.MintempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.MaxtempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="4" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[4].Day.MaxwindMph, StringFormat='{0} mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="4" Grid.Column="3" />
-
-
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Date}"  FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Small" Grid.Row="5" Grid.Column="0" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.MintempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="5" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.MaxtempC, StringFormat='{0}ºC'}" IsVisible="{Binding IsCelsius}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="5" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.MaxwindKph, StringFormat='{0} km/h'}" IsVisible="{Binding IsKph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="5" Grid.Column="3" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.Avghumidity, StringFormat='{0}%'}" FontAttributes="Bold"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" Grid.Row="5" Grid.Column="4" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.MintempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="5" Grid.Column="1" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.MaxtempF, StringFormat='{0}ºF'}" IsVisible="{Binding IsFah}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="5" Grid.Column="2" />
-            <Label Text="{Binding forecast.Forecast.Forecastday[5].Day.MaxwindMph, StringFormat='{0} mph'}" IsVisible="{Binding IsMph}" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium"  Grid.Row="5" Grid.Column="3" />
-
+            <ListView x:Name="CitiesListView" ItemsSource="{Binding Forecasts}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnSpacing="5" Padding="5,10,5,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Date}" HorizontalOptions="Start"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="CharacterWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Day.MintempC, StringFormat='Min T: {0}ºC'}" IsVisible="{Binding IsCelsius}" HorizontalOptions="Start"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="CharacterWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="{Binding Day.MaxtempC, StringFormat='Max T: {0}ºC'}" IsVisible="{Binding IsCelsius}"  HorizontalOptions="Center"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="2" />
+                                <Label Text="{Binding Day.MintempF, StringFormat='Min T: {0}ºF'}" IsVisible="{Binding IsFah}" HorizontalOptions="Start"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="CharacterWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="{Binding Day.MaxtempF, StringFormat='Max T: {0}ºF'}" IsVisible="{Binding IsFah}"  HorizontalOptions="Center"  FontAttributes="Bold" VerticalOptions="Center" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="Medium" Grid.Row="0" Grid.Column="2" />
+                                <Image Source="{Binding Day.Condition.Icon, StringFormat='https:{0}'}" HorizontalOptions="Fill" Grid.Row="0" Grid.Column="3" />
+                            </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
 
         </Grid>
     </ScrollView>

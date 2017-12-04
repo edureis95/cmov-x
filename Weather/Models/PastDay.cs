@@ -46,6 +46,9 @@ namespace Weather {
 
     public partial class Forecastday
     {
+        public bool IsFah { get; set; }
+        public bool IsCelsius { get; set; }
+
         [JsonProperty("astro")]
         public Astro Astro { get; set; }
 

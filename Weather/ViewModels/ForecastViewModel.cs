@@ -9,7 +9,7 @@ namespace Weather
 {
     public class ForecastViewModel : BaseViewModel
     {
-        public ObservableCollection<ForecastJson> Forecasts { get; set; }
+        public ObservableCollection<Forecastday> Forecasts { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public ForecastJson forecast { get; set; }
@@ -18,6 +18,7 @@ namespace Weather
 
         public ForecastViewModel(City city)
         {
+            Forecasts = new ObservableCollection<Forecastday>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(city));
             IsFah = !App.IsCelsius;
             IsCelsius = App.IsCelsius;
@@ -36,7 +37,16 @@ namespace Weather
 
             try
             {
+                Forecasts.Clear();
                 forecast = await DataStore.GetForecast(city.Location.Name+","+city.Location.Region+","+city.Location.Country);
+
+                foreach (var f in forecast.Forecast.Forecastday)
+                {
+                    f.IsFah = IsFah;
+                    f.IsCelsius = IsCelsius;
+                    Forecasts.Add(f);
+                }
+
                 OnPropertyChanged("forecast");
             }
             catch (Exception ex)

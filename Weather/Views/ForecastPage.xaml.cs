@@ -31,5 +31,17 @@ namespace Weather
             viewModel.LoadItemsCommand.Execute(null);
 
         }
+
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var city = args.SelectedItem as Forecastday;
+            if (city == null)
+                return;
+
+            await Navigation.PushAsync(new ChartPage((city)));
+
+            // Manually deselect item
+            CitiesListView.SelectedItem = null;
+        }
     }
 }
